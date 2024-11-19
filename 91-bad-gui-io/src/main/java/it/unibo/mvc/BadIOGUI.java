@@ -54,8 +54,22 @@ public class BadIOGUI {
         canvas.add(panel, BorderLayout.CENTER);
         panel.add(write);
         /*
+         * Ex 01.02
+         */
+        final JButton read = new JButton("Read from file");
+        panel.add(read);
+
+        /*
          * Handlers
          */
+        read.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Stampa causata dal click");
+            }
+
+        });
+
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
