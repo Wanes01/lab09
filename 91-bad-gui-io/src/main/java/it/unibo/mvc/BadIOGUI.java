@@ -10,12 +10,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -63,9 +65,17 @@ public class BadIOGUI {
          * Handlers
          */
         read.addActionListener(new ActionListener() {
+            /*
+             * Ex 01.03
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Stampa causata dal click");
+                try (final BufferedReader data = new BufferedReader(
+                        new FileReader(PATH))) {
+                    System.out.println(data.readLine());
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
 
         });
